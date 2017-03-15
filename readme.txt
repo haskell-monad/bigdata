@@ -1,4 +1,5 @@
-bigdata目录是web操作页面，需导入mysql表bigdata.sql
+使用perl编写的hadoop集群部署工具，可以使用正则匹配多个域名和ip并行部署
+bigdata目录是web操作页面，部署成功后会生成相应服务器拓扑图，需导入mysql表bigdata.sql
 
 1、将root.software.rar解压出来的内容放到/root/software目录下
 2、mysql依赖
@@ -13,7 +14,7 @@ bigdata目录是web操作页面，需导入mysql表bigdata.sql
 		-----db.properties			配置信息
 		-----bigdata.sql			mysql表结构（需导入mysql）
 
-		-----install_perl_sshbatch.sh		安装脚本依赖
+		-----install_perl_sshbatch.sh		安装perl相关依赖
 			2、需手动安装以下依赖
 			#cpan install DBI
 			#cpan install DBD::mysql
@@ -21,7 +22,7 @@ bigdata目录是web操作页面，需导入mysql表bigdata.sql
 		-----install_hadoop.pl			安装hadoop集群
 		-----start_local_hadoop_cluster.pl	启动hadoop集群
 
-3、数据结构
+3、结构
 service =>
         Hadoop => NameNode
         Hadoop => DataNode
