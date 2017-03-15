@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.base.mapper.NodeTypeMapper">
+	
+	<!-- 插入数据 -->
+	<insert id="insert" parameterType="nodetype" useGeneratedKeys="true" keyProperty="id">
+     	insert into bigdata_node_type
+     	(pid,name)
+     	values (#{pid}, #{name})
+    </insert>
+	
+	<!-- 查询列表-->
+	<select id="findAll" parameterType="java.util.Map" resultType="nodetype">
+		select * from bigdata_node_type where 1 = 1
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		<if test="pid != null">
+			and pid = #{pid}
+		</if>
+		<if test="name != null and name != ''">
+			and name = #{name};
+		</if>
+    </select>
+
+	<!--更新数据 -->
+	<update id="update" parameterType="nodetype">
+		update bigdata_node_type 
+		<trim prefix="SET" suffixOverrides=",">
+		   <if test="pid != null">
+		   		pid=#{pid},
+		   </if>
+		   <if test="name != null and name != ''">
+		   		name=#{name},
+		   </if>
+		</trim>
+		 WHERE id=#{id}
+	</update>
+	
+	<!-- 根据id删除数据 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from bigdata_node_type where id = #{id};
+	</delete>
+	
+	<!-- 根据pid删除数据 -->
+	<delete id="deleteByPid" parameterType="java.lang.Integer">
+		delete from bigdata_node_type where pid = #{pid};
+	</delete>	
+	
+</mapper>

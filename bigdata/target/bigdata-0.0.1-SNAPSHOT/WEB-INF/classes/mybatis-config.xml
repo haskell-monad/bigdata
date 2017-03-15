@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration      
+    PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"      
+    "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+
+<!-- mybatis核心配置文件 -->
+<configuration>
+	
+	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 
+	<typeAliases>
+		 <typeAlias alias="nodetype" type="com.base.bean.NodeType" />
+		 <typeAlias alias="sshinfo" type="com.base.bean.SshInfo" />
+	</typeAliases>
+	-->
+	<!-- 数据库连接信息 
+	<environments default="exprevenue">
+		<environment id="exprevenue">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${db.driver}" />
+				<property name="url" value="${db.url}" />
+				<property name="username" value="${db.user}" />
+				<property name="password" value="${db.pass}" />
+			</dataSource>
+		</environment>
+	</environments>
+	-->
+	<!-- 非注解的sql映射文件配置，如果使用mybatis注解，该mapper无需配置，但是如果mybatis注解中包含@resultMap注解，则mapper必须配置，给resultMap注解使用 -->
+	<!--
+	<mappers>
+		<mapper resource="mappers/NodeTypeMapper.xml" />
+		<mapper resource="mappers/SshInfoMapper.xml" />
+	</mappers>
+	-->
+</configuration>

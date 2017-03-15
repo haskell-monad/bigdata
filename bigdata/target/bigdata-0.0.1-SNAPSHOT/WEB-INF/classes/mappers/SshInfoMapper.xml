@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.base.mapper.SshInfoMapper">
+	
+	
+	<!-- 查询列表-->
+	<select id="selectAll" parameterType="java.util.Map" resultType="sshinfo">
+		select id,ip,port,user,passwd,node_type as "nodetype",node_name as "nodename",rsa_key as "rsakey",install_status as "installstatus",create_time as "createtime",update_time as "creatime" 
+			from bigdata_ssh_info where 1=1
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="nodetype != null and nodetype != ''">
+				and node_type = #{nodetype}
+			</if>
+			<if test="nodename != null and nodename!= ''">
+				and node_name = #{nodename}
+			</if>
+			<if test="installstatus != null">
+				and install_status = #{installstatus}
+			</if>
+    </select>
+    
+    
+    <select id="selectAllGroupBy" parameterType="java.util.Map" resultType="sshinfo">
+		select ip,node_type as "nodetype",node_name as "nodename" 
+			from bigdata_ssh_info where 1=1 
+			<if test="nodetype != null and nodetype != ''">
+				and node_type = #{nodetype}
+			</if>
+			<if test="nodename != null and nodename!= ''">
+				and node_name = #{nodename}
+			</if>
+			<if test="installstatus != null">
+				and install_status = #{installstatus}
+			</if>
+			group by node_type,node_name
+    </select>
+    
+	
+	<!-- 插入数据 -->
+	<insert id="insert" parameterType="sshinfo" useGeneratedKeys="true" keyProperty="id">
+     	insert into bigdata_ssh_info
+     	(ip,port,user,passwd,node_type,node_name,rsa_key,install_status,create_time)
+     	values (#{ip}, #{port},#{user}, #{passwd},#{nodetype,jdbcType=VARCHAR},#{nodename,jdbcType=VARCHAR}, #{rsakey},#{installstatus}, #{createtime})
+    </insert>
+	
+	<!--更新数据 -->
+	<update id="update" parameterType="sshinfo">
+		update bigdata_ssh_info 
+		<trim prefix="SET" suffixOverrides=",">
+		   <if test="ip != null and ip != ''">
+		   		ip=#{ip},
+		   </if>
+		   <if test="port != null and port != ''">
+		   		port=#{port},
+		   </if>
+		   <if test="user != null and user != ''">
+		   		user=#{user},
+		   </if>
+		   <if test="passwd != null and passwd != ''">
+		   		passwd=#{passwd},
+		   </if>
+		   <if test="nodetype != null and nodetype != ''">
+		   		node_type=#{nodetype},
+		   </if>
+		    <if test="nodename != null and nodename != ''">
+		   		node_name=#{nodename},
+		   </if>
+		   <if test="rsakey != null">
+		   		rsa_key=#{rsakey},
+		   </if>
+		   <if test="installstatus != null">
+		   		install_status=#{installstatus},
+		   </if>
+		   <if test="updatetime != null">
+		   		update_time=#{updatetime},
+		   </if>
+		</trim>
+		 WHERE id=#{id}
+	</update>
+	
+	<!-- 根据id删除数据 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from bigdata_ssh_info where id = #{id};
+	</delete>
+	
+</mapper>
