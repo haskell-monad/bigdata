@@ -1,3 +1,5 @@
+bigdata目录是web操作页面，需导入mysql表bigdata.sql
+
 1、将root.software.rar解压出来的内容放到/root/software目录下
 2、mysql依赖
 #yum -y install mysql mysql-server mysql-devel
